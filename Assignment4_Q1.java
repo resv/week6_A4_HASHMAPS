@@ -30,13 +30,15 @@ package week6_A4_HASHMAPS;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Map.Entry;
 
 public class Assignment4_Q1 {
 
 	public static void main(String[] args) {
-
-		HashMap<Integer, String> colors = new HashMap<Integer, String>();
+	//INITIALIZING HASHMAP "COLORS" FOR QUESTION 1 & 2
+	HashMap<Integer, String> colors = new HashMap<Integer, String>();
+		
 	//1.KEY,VALUE PAIRS	
 		System.out.println("----------------QUESTION 1. KEY,VALUE PAIRS----------------\r\n");
 		//ADDING KEYS & VALUES TO HASHMAP "COLORS"
@@ -92,7 +94,109 @@ public class Assignment4_Q1 {
 	//3.SIMPLE MENU	
 			System.out.println("\r\n----------------QUESTION 3.SIMPLE MENU--------------------");
 			
+	//CALLING MENU
+			printMenu();
 			
+	//INITIALIZING HASHMAP "cart"
+			HashMap<String, Integer> cart = new HashMap<String, Integer>();
 			
+	//INITIALIZING KEYS & VALUES TO HASHMAP "CART"
+			cart.put("Hamburgers", 0);
+			cart.put("Hot Dog", 0);
+			cart.put("Sandwiches", 0);
+			cart.put("Soda" , 0);
+			cart.put("Fries", 0);
+			System.out.println("--------------------------");
+		
+	//INSTRUCTIONS FOR USER
+			Scanner reader = new Scanner(System.in);
+			System.out.println("\r\nWelcome to BurgerDonalds!");
+			System.out.println("1. Make a purchase?");
+			System.out.println("2. Exit");
+			System.out.println("What would you like to do?");
+			Integer choice = reader.nextInt();
+		
+	//PARSE CHOICE FROM USER
+			if (choice != 1 && choice != 2) {
+				System.out.println("Not sure what you mean?");
+				System.out.println("Goodbye, have a nice day!");
+				reader.close();
+			} else if (choice == 2) {
+				System.out.println("Goodbye, have a nice day!");
+				reader.close();
+			} else if (choice == 1) {
+				int counter = 0;
+					while(counter == 0) {
+						System.out.println("\r\nWhat item would you like to buy/add to cart? "
+						+ "(\r\nTell me the number from the menu or press 6 to EXIT/CHECKOUT)");
+						Integer buy = reader.nextInt();
+				
+		//PARSE ITEM CHOICE FROM USER, CONTINUES TO WHILE LOOP FROM ABOVE UNTIL USER IS FINISHED
+						switch (buy) {
+						case 1: System.out.println("Added Hamburger to your cart");
+								String addHamburgers = "Hamburgers";
+								int HamburgerCount = cart.getOrDefault(addHamburgers, 0);
+								cart.put(addHamburgers, HamburgerCount + 1);
+								printCart(cart);
+								break;
+								
+						case 2: System.out.println("Added Hot Dogs to your cart");
+								String addHotDog = "Hot Dogs";
+								int hotDogCount = cart.getOrDefault(addHotDog, 0);
+								cart.put(addHotDog, hotDogCount  + 1);
+								printCart(cart);
+								break;
+								
+						case 3: System.out.println("Added Sandwiches to your cart");
+								String addSandwiches = "Sandwiches";
+								int SandwichesCount = cart.getOrDefault(addSandwiches, 0);
+								cart.put(addSandwiches, SandwichesCount  + 1);
+								printCart(cart);
+								break;
+								
+						case 4: System.out.println("Added Soda to your cart");
+								String addSoda = "Soda";
+								int SodaCount = cart.getOrDefault(addSoda, 0);
+								cart.put(addSoda, SodaCount  + 1);
+								printCart(cart);
+								break;
+								
+						case 5: System.out.println("Added Fries to your cart");
+								String addFries = "Fries";
+								int FriesCount = cart.getOrDefault(addFries, 0);
+								cart.put(addFries, FriesCount  + 1);
+								printCart(cart);
+								break;
+								
+						case 6: System.out.println("--------------------------");
+								printCart(cart);
+								System.out.println("\r\nYour cart details are displayed above");
+								System.out.println("You can check pay at the counter.");
+								System.out.println("Thank you for shopping!");
+								counter = 1;
+								break;
+						}
+					}
+			}
+	} // main bracket	
+	
+	//PRINTS CART
+	protected static void printCart(HashMap<String, Integer> map) {
+		System.out.println("\r\n-------YOUR CART----------");
+		for (Entry<String, Integer> entry : map.entrySet()) {
+			String key = entry.getKey();
+		    Integer value = entry.getValue();
+			System.out.println(key + " = " +value);
+		}
+	}
+
+	//PRINTS MENU
+	static void printMenu() {
+		System.out.println("\r\n----BURGERDONALDS MENU----");
+		System.out.println("1. Hamburgers");
+		System.out.println("2. Hot Dogs");
+		System.out.println("3. Sandwiches");
+		System.out.println("4. Soda");
+		System.out.println("5. Fries");
 	}
 }
