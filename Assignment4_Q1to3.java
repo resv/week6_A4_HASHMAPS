@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
 
-public class Assignment4_Q1 {
+public class Assignment4_Q1to3 {
 
 	public static void main(String[] args) {
 	//INITIALIZING HASHMAP "COLORS" FOR QUESTION 1 & 2
